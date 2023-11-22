@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    /* Type Checking */
+    // 开启所有严格类型检查选项
+    "strict": true,
+    // 不允许有未使用的局部变量
+    "noUnusedLocals": true,
+    // 不允许函数中有未使用的参数
+    "noUnusedParameters": true,
+    // 不允许在switch语句中的case落空
+    "noFallthroughCasesInSwitch": true,
+
+    /* Modules */
+    // 设置生成代码使用的模块系统
+    "module": "ESNext",
+    // 设置模块解析策略（该项默认设置allowSyntheticDefaultImports: true）
+    "moduleResolution": "bundler",
+    // 允许使用模块导入语法来导入JSON文件
+    "resolveJsonModule": true,
+    // 允许在import语句中显式包含.ts扩展名
+    "allowImportingTsExtensions": true,
+    // 设置路径映射用于导入模块时不需要写相对或绝对路径（别名路径）
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Emit */
+    // 设置编译过程不生成.js文件
+    "noEmit": true,
+
+    /* JavaScript Support */
+    // 设置TS编译器不处理任何JS文件
+    "allowJs": false,
+
+    /* Interop Constraints */
+    // 设置每个文件作为单独的模块来转译
+    // 此时需要避免隐式类型导入即需要使用import type语法、避免使用const enums语法
+    "isolatedModules": true,
+    // 任何没有类型修饰符的导入或导出都会保留，且会在导出类型或接口时要求加上类型修饰符type
+    "verbatimModuleSyntax": true,
+
+    /* Language and Environment */
+    // 设置编译成哪个ES标准的JS（该项默认设置"useDefineForClassFields": true）
+    "target": "ES2022",
+    // 设置编译过程中类型检查需要利用的库文件
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    // 设置jsx代码的转译方式
+    "jsx": "react-jsx",
+
+    /* Completeness */
+    // 设置不跳过对所有声明文件.d.ts的类型检查
+    "skipLibCheck": false
+  },
+
+  /* Top Level */
+  // 设置TS编译器包含哪些文件
+  "include": ["./src"],
+  // 设置项目间的引用
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
