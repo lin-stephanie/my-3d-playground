@@ -7,7 +7,7 @@ interface Size {
   height: number
 }
 
-export default function BackgroundWall() {
+export default function BackgroundWall({ ...props }) {
   const [size, setSize] = useState<Size | undefined>()
 
   const scale = useAspect(
@@ -40,7 +40,7 @@ export default function BackgroundWall() {
     //   />
     // </mesh>
 
-    <Plane args={[1, 1]} position={[0, 0, 0]} scale={scale}>
+    <Plane args={[1, 1]} scale={scale} {...props}>
       <meshToonMaterial map={texture} color="#44403c" />
     </Plane>
   )

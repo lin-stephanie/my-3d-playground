@@ -32,6 +32,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    // https://github.com/pmndrs/react-three-fiber/issues/2623
     'react/no-unknown-property': ['error', { ignore: ['map', 'intensity'] }],
   },
 

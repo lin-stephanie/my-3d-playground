@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import BackgroundWall from '@/components/BackgroundWall'
 import styles from '@/styles/Scene.module.css'
+import MovingSpot from '@/components/MovingSpot'
 
 export default function Scene() {
   return (
@@ -29,14 +30,18 @@ export default function Scene() {
         // preserveDrawingBuffer: true
 
         // 优先使用高性能的图形硬件
-        powerPreference: 'high-performance',
+        // powerPreference: 'high-performance',
       }}
+      // perspective camera
       camera={{
         fov: 45,
         near: 0.1,
         far: 200,
         position: [0, 0, 10],
       }}
+
+      // orthographic camera
+      // camera={{ zoom: 1, near: 0.1, far: 200, position: [0, 0, 10] }}
 
       // 意味着所有与 Canvas 交互的事件将被这个指定的元素接收和处理
       // eventSource={document.getElementById('root')!}
@@ -46,7 +51,25 @@ export default function Scene() {
     >
       <ambientLight intensity={3} />
 
-      <BackgroundWall />
+      {/* <MovingSpot
+        color="#f87171"
+        position={[4, 3.1, 2]}
+        applyDepthBuffer={false}
+      />
+
+      <MovingSpot
+        color="#f87171"
+        position={[-4, 3.1, 2]}
+        applyDepthBuffer={false}
+      /> */}
+
+      <MovingSpot
+        color="#f87171"
+        position={[0, 3.1, 2]}
+        applyDepthBuffer={false}
+      />
+
+      <BackgroundWall position={[0, 0, 0]} />
     </Canvas>
   )
 }
