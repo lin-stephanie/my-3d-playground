@@ -31,7 +31,7 @@ export default function MovingSpot({ applyDepthBuffer = false, ...props }) {
   return (
     <SpotLight
       ref={light}
-      castShadow
+      // castShadow
       angle={0.35}
       penumbra={1}
       distance={6}

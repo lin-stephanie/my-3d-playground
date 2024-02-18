@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# 当执行git commit -m "xxx"后调用
 npx commitlint --edit $1

@@ -1,13 +1,13 @@
 import { Canvas } from '@react-three/fiber'
 import BackgroundWall from '@/components/BackgroundWall'
-import styles from '@/styles/Scene.module.css'
 import MovingSpot from '@/components/MovingSpot'
 
 export default function Scene() {
   return (
     <Canvas
-      className={styles.canvas}
-      // 启用场景中物体的阴影效果，这意味着灯光和物体之间的相互作用会产生阴影，使场景更加逼真
+      style={{ touchAction: 'none' }}
+      // className={styles.canvas}
+      // 启用渲染器的阴影映射功能使得场景能够处理和渲染阴影
       // shadows
 
       // 使用正交相机
@@ -26,7 +26,7 @@ export default function Scene() {
         // 抗锯齿效果可以平滑边缘
         antialias: true,
 
-        // 表示渲染完成后保留在绘图缓冲区中的图像，对渲染结果进行捕获和保存非常有用，如实现屏幕截图功能
+        // 表示渲染完成后保留在绘图缓冲区中的图像，有利于对渲染结果进行捕获和保存（如实现屏幕截图功能）
         // preserveDrawingBuffer: true
 
         // 优先使用高性能的图形硬件

@@ -2,9 +2,11 @@
   "name": "portfolio-home",
   "private": true,
   "version": "0.0.0",
-  "description": "My Personal Portfolio 3D Homepage.",
-  "keywords": [],
   "author": "Stephanie Lin",
+  "homepage": "",
+  "description": "Portfolio 3D Homepage for Stephanie Lin",
+  "keywords": [],
+  "repository": "",
   "license": "GPL-3.0",
   "type": "module",
   "scripts": {
@@ -48,5 +50,8 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "npm run lint",
     "*": "npm run format"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
