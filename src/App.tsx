@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
-import Scene from '@/components/Scene'
-import Overlay from '@/components/Overlay'
+import Scene from './Scene'
+import Overlay from './Overlay'
 
 export default function App() {
   return (

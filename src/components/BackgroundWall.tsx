@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react'
 import { Plane, useTexture, useAspect } from '@react-three/drei'
-import wallUrl from '@/assets/wall3.jpg'
+import { DoubleSide } from 'three'
+
+type PlaneProps = React.ComponentProps<typeof Plane>
+
+type BackgroundWallProp = PlaneProps & {
+  wallUrl: string
+  color: string
+}
 
 interface Size {
   width: number
   height: number
 }
 
-export default function BackgroundWall({ ...props }) {
+const BackgroundWall = ({ wallUrl, color, ...props }: BackgroundWallProp) => {
   const [size, setSize] = useState<Size | undefined>()
+  const texture = useTexture(wallUrl)
 
   const scale = useAspect(
     size ? size.width : 1600,
     size ? size.height : 1000,
     1.05
   )
-
-  const texture = useTexture(wallUrl)
 
   useEffect(() => {
     if (texture.image) {
@@ -41,7 +47,9 @@ export default function BackgroundWall({ ...props }) {
     // </mesh>
 
     <Plane args={[1, 1]} scale={scale} {...props}>
-      <meshToonMaterial map={texture} color="#44403c" />
+      <meshToonMaterial map={texture} color={color} side={DoubleSide} />
     </Plane>
   )
 }
+
+export default BackgroundWall

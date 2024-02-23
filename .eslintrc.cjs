@@ -28,12 +28,37 @@ module.exports = {
   plugins: ['react-refresh'],
 
   rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
     // https://github.com/pmndrs/react-three-fiber/issues/2623
-    'react/no-unknown-property': ['error', { ignore: ['map', 'intensity'] }],
+    'react/no-unknown-property': [
+      'error',
+      {
+        ignore: [
+          'map',
+          'intensity',
+          'position',
+          'rotation',
+          'geometry',
+          'material',
+          'matcap',
+          'castShadow',
+          'receiveShadow',
+          'metalness',
+          'roughness',
+          'envMapIntensity',
+          'raycast',
+          'toneMapped',
+          'fog',
+          'side',
+          'penumbra',
+          'shadow-mapSize',
+        ],
+      },
+    ],
   },
 
   settings: {
