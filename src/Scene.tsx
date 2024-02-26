@@ -10,11 +10,11 @@ import frameModel from '@/assets/models/photo-frame1.glb?url'
 import matcapUrl from '@/assets/textures/C75F55_F8BDA9_EB9484_F4A494-512px.png'
 
 export default function Scene() {
-  console.log(photoUrl)
   return (
     <Canvas
       // 设置canvas元素样式
-      style={{ touchAction: 'none' }}
+      // style={{ touchAction: 'none' }}
+      className="canvas__container"
       // 启用渲染器的阴影映射功能使得场景能够处理和渲染阴影
       shadows
       // 像素比
@@ -66,21 +66,9 @@ export default function Scene() {
 
       <directionalLight castShadow position={[-1.5, 1.5, 1]} intensity={1} />
 
-      {/* <MovingSpot
-        color="#f87171"
-        position={[4, 3, 2]}
-        applyDepthBuffer={false}
-      />
-      <MovingSpot
-        color="#f87171"
-        position={[-4, 3, 2]}
-        applyDepthBuffer={false}
-      /> */}
-      <MovingSpot
-        // color="#f87171"
-        color="white"
-        position={[0, 3, 2]}
-      />
+      <MovingSpot color="#fecaca" position={[4, 3, 2]} />
+      <MovingSpot color="#fecaca" position={[-4, 3, 2]} />
+      <MovingSpot color="#fecaca" position={[0, 3, 2]} />
 
       <BackgroundWall
         receiveShadow
