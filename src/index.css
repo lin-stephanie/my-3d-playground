@@ -4,9 +4,8 @@
 @tailwind components;
 @tailwind utilities; */
 
-/* @import '@/assets/RubikWetPaint' */
-
-@import 'https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap';
+@import '@/assets/fonts/RubikWetPaint/RubikWetPaint.css';
+/* @import 'https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap'; */
 
 *,
 *::before,
@@ -32,7 +31,6 @@ body {
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   text-rendering: optimizeLegibility;
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: 100%;
@@ -40,166 +38,61 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* body {
-  background-color: #15100f;
-  background-color: rgb(23, 23, 23);
-  background-image: linear-gradient(-150deg, #769a31 10%, #526b22 25%);
-
-  color: rgba(255, 255, 255, 0.87);
-} */
-
-/* body:before {
-  content: '';
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  background: url('./assets/wall-effect.png');
-} */
-
 .canvas__container {
   touch-action: none;
 }
 
-/* pointer-events：lets mouse events pass through to the Canvas below */
 section {
   overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 
   height: 100%;
   width: 100%;
 
+  /* lets mouse events pass through to the Canvas below */
   pointer-events: none;
 }
 
 .text__container {
   position: relative;
   display: flex;
-  gap: 12px;
-  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
-
-  margin-left: 7vw;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 
   color: white;
   font-family: 'Rubik Wet Paint', system-ui, sans-serif;
 }
 
 h1 {
-  /* width: 30%; */
-  margin: auto;
+  margin: 0;
 
-  /* color: #f6cbcb;
-  color: #f25b56;
-  color: #ef4444;
-  color: #b91c1c;
-  color: #7f1d1d;
-  color: #551310; */
-  font-size: 6rem;
-  letter-spacing: 6px;
-  /* line-height: 10rem; */
+  font-size: 7rem;
+  letter-spacing: 3px;
 }
 
 h2 {
-  /* width: 30%; */
-
-  font-size: 3rem;
-  letter-spacing: 3px;
-  /* line-height: -10rem; */
+  font-size: 4rem;
+  /* letter-spacing: 1px; */
 }
 
-/* 方式1（背景阴影）：通过创建两个兄弟元素分别创建层叠上下文并设置不同的z-index */
-/* .text--gradient {
-  position: relative;
-  z-index: 2;
-
-  background: #fecaca;
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#551310", endColorstr="#F87171", GradientType=1 );
-  background: -moz-linear-gradient(
-    135deg,
-    #551310 0%,
-    #f87171 50%,
-    #fecaca 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    #551310 0%,
-    #f87171 50%,
-    #fecaca 100%
-  );
-  background: linear-gradient(120deg, #561410 0%, #f87171 75%, #fecaca 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  text-shadow:
-    5px 5px 0px #ffb650,
-    -10px -10px 0px #ffd662,
-    -15px -15px 0px #ff80bf,
-    20px 20px 0px #ef5097,
-    25px 25px 0px #6868ac,
-    30px 30px 0px #90b1e0;
-} */
-
-/* .text__greet + .text--shadow {
-  position: absolute;
-  z-index: 1;
-
-  top: 3%;
-  left: -0.6%;
-
-  color: black;
+.text__greet {
+  margin-left: 224px;
 }
 
-.text__name + .text--shadow {
-  position: absolute;
-  z-index: 1;
-
-  top: 42%;
-  left: -1%;
-
-  color: black;
-} */
-
-/* 方式2（背景阴影）：通过两个伪元素在同一个层叠上下文中 */
 .text--gradient {
   position: relative;
-  /* z-index: 1; */
 
   color: transparent;
   white-space: nowrap;
 }
-
-/* .text__greet::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 5%;
-  left: -1%;
-
-  color: black;
-  white-space: pre;
-}
-
-.text__greet::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0%;
-
-  background: linear-gradient(120deg, #561410 0%, #f87171 75%, #fecaca 100%);
-  background-clip: text;
-
-  color: transparent;
-  white-space: pre;
-} */
 
 .text__greet::before,
 .text__name::before {
@@ -210,8 +103,9 @@ h2 {
 
   color: black;
   white-space: nowrap;
-
-  text-shadow: -1px -1px 3px #ff8080;
+  text-shadow:
+    -1px -1px 3px #ff8080,
+    -1px -1px 3px #fee2e2;
 }
 
 .text__greet::after,

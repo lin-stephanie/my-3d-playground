@@ -7,7 +7,7 @@ import PhotoFrame from '@/components/PhotoFrame'
 import wallUrl from '@/assets/images/wall1.jpg'
 import photoUrl from '@/assets/images/photo-stone-700.png'
 import frameModel from '@/assets/models/photo-frame1.glb?url'
-import matcapUrl from '@/assets/textures/C75F55_F8BDA9_EB9484_F4A494-512px.png'
+import matcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
 
 export default function Scene() {
   return (
@@ -64,11 +64,11 @@ export default function Scene() {
 
       <ambientLight intensity={2} />
 
-      <directionalLight castShadow position={[-1.5, 1.5, 1]} intensity={1} />
+      <directionalLight castShadow position={[2, 2, 1]} intensity={1} />
 
-      <MovingSpot color="#fecaca" position={[4, 3, 2]} />
-      <MovingSpot color="#fecaca" position={[-4, 3, 2]} />
-      <MovingSpot color="#fecaca" position={[0, 3, 2]} />
+      {/* <MovingSpot color="#fecaca" position={[6, 3, 2]} /> */}
+      {/* <MovingSpot color="#fecaca" position={[-6, 3, 2]} /> */}
+      {/* <MovingSpot color="#fecaca" position={[0, 3, 2]} /> */}
 
       <BackgroundWall
         receiveShadow
@@ -97,8 +97,9 @@ export default function Scene() {
         frameScale={[0.25, 0.19, 0.25]}
         photoPos={[-0.01, 0, 0.18]}
         photoScale={[2, 2.6]}
-        position={[4, 0, 0]}
-        scale={0.8}
+        position={[-3, 1.5, 0]}
+        rotation={[0, 0, 0.05]}
+        scale={0.6}
       />
     </Canvas>
   )

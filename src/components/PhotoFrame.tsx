@@ -61,8 +61,9 @@ const Frame = ({
     >
       <meshMatcapMaterial
         matcap={matcapTexture}
-        color={'#78716c'}
-        // color={'#9ca3af'}
+        // color={'#78716c'}
+        color={'#9ca3af'}
+        // color={'#a8a29e'}
       />
       <mesh
         castShadow
