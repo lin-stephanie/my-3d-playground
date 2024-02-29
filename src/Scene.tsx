@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import BackgroundWall from '@/components/BackgroundWall'
+import Text from '@/components/Text'
 import MovingSpot from '@/components/MovingSpot'
 // import Frame from '@/components/Frame'
 import PhotoFrame from '@/components/PhotoFrame'
@@ -76,7 +77,9 @@ export default function Scene() {
         color="#44403c"
         // color="#f5f5f4"
         position={[0, 0, 0]}
-      />
+      >
+        <Text />
+      </BackgroundWall>
 
       {/* <Frame
         castShadow
@@ -97,9 +100,9 @@ export default function Scene() {
         frameScale={[0.25, 0.19, 0.25]}
         photoPos={[-0.01, 0, 0.18]}
         photoScale={[2, 2.6]}
-        position={[-3, 1.5, 0]}
+        position={[-3.1, 1.8, 0]}
         rotation={[0, 0, 0.05]}
-        scale={0.6}
+        scale={0.62}
       />
     </Canvas>
   )

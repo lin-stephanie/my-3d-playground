@@ -86,7 +86,7 @@ const Photo = ({ hover, scale, ...props }: PhotoProp) => {
   useFrame((state, delta) => {
     if (photo.current) {
       const newZoom =
-        1.1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 10
+        1.05 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 20
       setZoom(newZoom)
 
       easing.damp3(

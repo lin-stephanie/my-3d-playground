@@ -14,7 +14,12 @@ interface Size {
   height: number
 }
 
-const BackgroundWall = ({ wallUrl, color, ...props }: BackgroundWallProp) => {
+const BackgroundWall = ({
+  wallUrl,
+  color,
+  children,
+  ...props
+}: BackgroundWallProp) => {
   const [size, setSize] = useState<Size | undefined>()
   const texture = useTexture(wallUrl)
 
@@ -48,6 +53,7 @@ const BackgroundWall = ({ wallUrl, color, ...props }: BackgroundWallProp) => {
 
     <Plane args={[1, 1]} scale={scale} {...props}>
       <meshToonMaterial map={texture} color={color} side={DoubleSide} />
+      {children}
     </Plane>
   )
 }

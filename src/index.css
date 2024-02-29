@@ -42,20 +42,7 @@ body {
   touch-action: none;
 }
 
-section {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-  width: 100%;
-
-  /* lets mouse events pass through to the Canvas below */
+.html__wrapper {
   pointer-events: none;
 }
 
@@ -65,7 +52,9 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
+
+  margin-top: 6%;
 
   color: white;
   font-family: 'Rubik Wet Paint', system-ui, sans-serif;
@@ -80,11 +69,11 @@ h1 {
 
 h2 {
   font-size: 4rem;
-  /* letter-spacing: 1px; */
+  letter-spacing: 1px;
 }
 
 .text__greet {
-  margin-left: 224px;
+  margin-left: 248px;
 }
 
 .text--gradient {
@@ -98,8 +87,8 @@ h2 {
 .text__name::before {
   content: attr(data-text);
   position: absolute;
-  top: 5%;
-  left: -1%;
+  top: 4%;
+  left: -0.5%;
 
   color: black;
   white-space: nowrap;
@@ -119,4 +108,40 @@ h2 {
   background-clip: text;
 
   white-space: nowrap;
+}
+
+@font-face {
+  font-family: 'neon';
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+}
+
+.text__intro {
+  color: #fef08a;
+  font-family: neon;
+  font-size: 1.1rem;
+  line-height: 90px;
+  letter-spacing: 1px;
+  text-shadow: -0.2vw 0.2vw 0.2vw #ca8a04;
+}
+
+.text--neon {
+  animation: neon 6s ease-in-out infinite;
+  -moz-animation: neon 6s ease-in-out infinite;
+  -webkit-animation: neon 6s ease-in-out infinite;
+  -o-animation: neon 6s ease-in-out infinite;
+}
+
+@keyframes neon {
+  0%,
+  100% {
+    color: #fef08a;
+    text-shadow:
+      0 0 0.2vw #dc2626,
+      0 0 0.3vw #dc2626,
+      -0.2vw 0.2vw 0.2vw #ca8a04;
+  }
+  50% {
+    color: #fefce8;
+    text-shadow: 0vw 0vw 0.1vw #a16207;
+  }
 }
