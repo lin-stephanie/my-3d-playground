@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import BackgroundWall from '@/components/BackgroundWall'
-import Text from '@/components/Text'
-import MovingSpot from '@/components/MovingSpot'
+import Introduction from '@/components/text/Introduction'
+// import MovingSpot from '@/components/MovingSpot'
 // import Frame from '@/components/Frame'
 import PhotoFrame from '@/components/PhotoFrame'
 import wallUrl from '@/assets/images/wall1.jpg'
@@ -14,8 +14,8 @@ export default function Scene() {
   return (
     <Canvas
       // 设置canvas元素样式
-      // style={{ touchAction: 'none' }}
-      className="canvas__container"
+      style={{ touchAction: 'none' }}
+      // className="canvas__container"
       // 启用渲染器的阴影映射功能使得场景能够处理和渲染阴影
       shadows
       // 像素比
@@ -78,7 +78,7 @@ export default function Scene() {
         // color="#f5f5f4"
         position={[0, 0, 0]}
       >
-        <Text />
+        <Introduction />
       </BackgroundWall>
 
       {/* <Frame
