@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import Greeting from './Greeting'
 import Profile from './Profile'
 
+import { ThemeProvider } from 'styled-components'
+import { useStore } from '@/stores'
+
 // type HtmlProps = React.ComponentProps<typeof Html>
 
 const StyledHtml = styled(Html)`
@@ -24,12 +27,16 @@ const StyledDiv = styled.div`
 `
 
 const Introduction = () => {
+  const themeConfig = useStore.use.themeConfig()
+
   return (
     <StyledHtml center>
-      <StyledDiv>
-        <Greeting />
-        <Profile />
-      </StyledDiv>
+      <ThemeProvider theme={themeConfig}>
+        <StyledDiv>
+          <Greeting />
+          <Profile />
+        </StyledDiv>
+      </ThemeProvider>
     </StyledHtml>
   )
 }

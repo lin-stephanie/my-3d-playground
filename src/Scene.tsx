@@ -10,7 +10,12 @@ import photoUrl from '@/assets/images/photo-stone-700.png'
 import frameModel from '@/assets/models/photo-frame1.glb?url'
 import matcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
 
+import { useTheme } from 'styled-components'
+
 export default function Scene() {
+  const theme = useTheme()
+  console.log('theme1: ', theme)
+
   return (
     <Canvas
       // 设置canvas元素样式

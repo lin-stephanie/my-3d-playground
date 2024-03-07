@@ -1,8 +1,10 @@
 import styled, { keyframes } from 'styled-components'
 
+import { useTheme } from 'styled-components'
+
 const neonAnimation = keyframes`
   0%, 100% {
-    color: #fef08a;
+    color: ${(props) => props.theme.colors.yellow[200]};
     text-shadow:
       0 0 0.2vw #dc2626,
       0 0 0.3vw #dc2626,
@@ -14,7 +16,7 @@ const neonAnimation = keyframes`
   }
 `
 const StyledP = styled.p`
-  color: #fef08a;
+  color: ${(props) => props.theme.colors.yellow[200]};
   font-family: 'neon';
   font-size: 1.1rem;
   line-height: 90px;
@@ -24,8 +26,12 @@ const StyledP = styled.p`
   animation: ${neonAnimation} 6s ease-in-out infinite;
 `
 
-const Profile = () => (
-  <StyledP>{`<A food-loving, self-taught front-end developer />`}</StyledP>
-)
+const Profile = () => {
+  const theme = useTheme()
+  console.log('theme3: ', theme)
+  return (
+    <StyledP>{`<A food-loving, self-taught front-end developer />`}</StyledP>
+  )
+}
 
 export default Profile
