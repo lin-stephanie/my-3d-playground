@@ -1,5 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { useStore } from '@/stores'
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
 // import MovingSpot from '@/components/MovingSpot'
@@ -10,11 +11,8 @@ import photoUrl from '@/assets/images/photo-stone-700.png'
 import frameModel from '@/assets/models/photo-frame1.glb?url'
 import matcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
 
-import { useTheme } from 'styled-components'
-
 export default function Scene() {
-  const theme = useTheme()
-  console.log('theme1: ', theme)
+  const { colors } = useStore.use.themeConfig()
 
   return (
     <Canvas
@@ -72,15 +70,14 @@ export default function Scene() {
 
       <directionalLight castShadow position={[2, 2, 1]} intensity={1} />
 
-      {/* <MovingSpot color="#fecaca" position={[6, 3, 2]} /> */}
-      {/* <MovingSpot color="#fecaca" position={[-6, 3, 2]} /> */}
-      {/* <MovingSpot color="#fecaca" position={[0, 3, 2]} /> */}
+      {/* <MovingSpot color={colors.red[200]} position={[6, 3, 2]} /> */}
+      {/* <MovingSpot color={colors.red[200]} position={[-6, 3, 2]} /> */}
+      {/* <MovingSpot color={colors.red[200]} position={[0, 3, 2]} /> */}
 
       <BackgroundWall
         receiveShadow
         wallUrl={wallUrl}
-        color="#44403c"
-        // color="#f5f5f4"
+        color={colors.stone[700]}
         position={[0, 0, 0]}
       >
         <Introduction />

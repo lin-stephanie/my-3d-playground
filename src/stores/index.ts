@@ -3,7 +3,7 @@ import { createThemeSlice } from './slices/theme'
 import type { ThemeSlice } from './slices/theme'
 import { createSelectors } from './createSelectors'
 
-const useStoreBase = create<ThemeSlice>((...a) => ({
+const useStoreBase = create<ThemeSlice>()((...a) => ({
   ...createThemeSlice(...a),
 }))
 

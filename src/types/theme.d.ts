@@ -2,60 +2,12 @@ import 'styled-components'
 
 interface GeneralTheme {
   colors: {
-    red: {
-      50: string
-      100: string
-      200: string
-      300: string
-      350: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-      940: string
-      950: string
-    }
-    yellow: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-      950: string
-    }
-    stone: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-      950: string
-    }
-    gray: {
-      50: string
-      100: string
-      200: string
-      300: string
-      400: string
-      500: string
-      600: string
-      700: string
-      800: string
-      900: string
-      950: string
-    }
+    /* err: A record is preferred over an index signature. eslint(@typescript-eslint/consistent-indexed-object-style) */
+    // red: { [key: number]: string }
+    red: Record<number, string>
+    yellow: Record<number, string>
+    stone: Record<number, string>
+    gray: Record<number, string>
   }
 }
 

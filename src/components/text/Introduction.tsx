@@ -1,10 +1,8 @@
 import { Html } from '@react-three/drei'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
+import { useStore } from '@/stores'
 import Greeting from './Greeting'
 import Profile from './Profile'
-
-import { ThemeProvider } from 'styled-components'
-import { useStore } from '@/stores'
 
 // type HtmlProps = React.ComponentProps<typeof Html>
 
@@ -22,7 +20,6 @@ const StyledDiv = styled.div`
 
   margin-top: 6%;
 
-  color: white;
   font-family: 'Rubik Wet Paint', system-ui, sans-serif;
 `
 
