@@ -1,15 +1,22 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useStore } from '@/stores'
+
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
-// import MovingSpot from '@/components/MovingSpot'
+import MovingSpot from '@/components/MovingSpot'
 // import Frame from '@/components/Frame'
 import PhotoFrame from '@/components/PhotoFrame'
+import Balloons from '@/components/Balloons'
+
 import wallUrl from '@/assets/images/wall1.jpg'
+
 import photoUrl from '@/assets/images/photo-stone-700.png'
 import frameModel from '@/assets/models/photo-frame1.glb?url'
-import matcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
+import frameMatcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
+
+import balloonModel from '@/assets/models/balloon2.glb?url'
+import balloonMatcapUrl from '@/assets/textures/B0A2A8_866A63_E8E9F2_614C4F-512px.png'
 
 export default function Scene() {
   const { colors } = useStore.use.themeConfig()
@@ -38,18 +45,17 @@ export default function Scene() {
         // powerPreference: 'high-performance',
       }}
       // 透视相机配置
-      camera={{
+      /* camera={{
         fov: 45,
         near: 0.1,
         far: 200,
         position: [0, 0, 10],
-      }}
+      }} */
 
       // 使用正交相机
-      // orthographic={true}
-
+      orthographic={true}
       // 正交相机配置
-      // camera={{ zoom: 1, near: 0.1, far: 200, position: [0, 0, 10] }}
+      camera={{ zoom: 100, near: 0.1, far: 200, position: [0, 0, 10] }}
 
       // 使用`THREE.NoToneMapping`而不是`THREE.ACESFilmicToneMapping
       // flat={true}
@@ -68,7 +74,7 @@ export default function Scene() {
 
       <ambientLight intensity={2} />
 
-      <directionalLight castShadow position={[2, 2, 1]} intensity={1} />
+      <directionalLight castShadow position={[7, 7, 10]} intensity={0.8} />
 
       {/* <MovingSpot color={colors.red[200]} position={[6, 3, 2]} /> */}
       {/* <MovingSpot color={colors.red[200]} position={[-6, 3, 2]} /> */}
@@ -96,15 +102,46 @@ export default function Scene() {
       /> */}
       <PhotoFrame
         modelUrl={frameModel}
-        matcapUrl={matcapUrl}
-        imageUrl={photoUrl}
+        matcapUrl={frameMatcapUrl}
+        photoUrl={photoUrl}
         framePos={[0, 0, 0.18]}
         frameScale={[0.25, 0.19, 0.25]}
         photoPos={[-0.01, 0, 0.18]}
         photoScale={[2, 2.6]}
-        position={[-3.1, 1.8, 0]}
+        position={[-2.8, 1.6, 0]}
         rotation={[0, 0, 0.05]}
-        scale={0.62}
+        scale={0.56}
+      />
+
+      <Balloons
+        modelUrl={balloonModel}
+        matcapUrl={balloonMatcapUrl}
+        balloons={[
+          {
+            position: [-13.5, 3, 2],
+            rotation: [0, 0, 0],
+            scale: 1,
+            color: colors.red[400],
+            theme: 'dark',
+          },
+          {
+            position: [-3.5, 6.5, 2],
+            rotation: [0, 0, 0],
+            scale: 1,
+            color: colors.red[300],
+            theme: 'system',
+          },
+          {
+            position: [13, 2, 2],
+            rotation: [0, -0.2, 0],
+            scale: 1,
+            color: colors.red[100],
+            theme: 'light',
+          },
+        ]}
+        position={[0, 0, 0]}
+        rotation={[0, 0, 0]}
+        scale={0.26}
       />
     </Canvas>
   )

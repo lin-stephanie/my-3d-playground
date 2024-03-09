@@ -2,8 +2,8 @@ import type { StateCreator } from 'zustand'
 import type { DefaultTheme } from 'styled-components'
 import { darkThemeConfig, lightThemeConfig } from '@/configs/theme'
 
-type ThemeSetting = 'light' | 'dark' | 'system'
-type systemThemeSetting = 'light' | 'dark' | undefined
+export type ThemeSetting = 'light' | 'dark' | 'system'
+export type systemThemeSetting = 'light' | 'dark' | undefined
 
 export interface ThemeSlice {
   theme: ThemeSetting

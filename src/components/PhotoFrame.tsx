@@ -20,7 +20,7 @@ type PhotoFrameProp = Omit<
   FrameProp & PhotoProp & GroupProps,
   'hover' | 'setHover'
 > & {
-  imageUrl: string
+  photoUrl: string
   framePos: Vector3
   frameScale: Vector3
   photoPos: Vector3
@@ -112,7 +112,7 @@ const Photo = ({ hover, scale, ...props }: PhotoProp) => {
 const PhotoFrame = ({
   modelUrl,
   matcapUrl,
-  imageUrl,
+  photoUrl,
   framePos,
   frameScale,
   photoPos,
@@ -133,7 +133,7 @@ const PhotoFrame = ({
         setHover={setHover}
       />
       <Photo
-        url={imageUrl}
+        url={photoUrl}
         position={photoPos}
         scale={photoScale}
         hover={hover}
