@@ -63,7 +63,8 @@ const generalThemeConfig: GeneralTheme = {
 export const darkThemeConfig: DefaultTheme = {
   ...generalThemeConfig,
   text: {
-    shadowAnimation: false,
+    neon: false,
+    shadow: false,
   },
   threeD: {
     spotlight: false,
@@ -75,7 +76,8 @@ export const darkThemeConfig: DefaultTheme = {
 export const lightThemeConfig: DefaultTheme = {
   ...generalThemeConfig,
   text: {
-    shadowAnimation: true,
+    neon: true,
+    shadow: true,
   },
   threeD: {
     spotlight: true,

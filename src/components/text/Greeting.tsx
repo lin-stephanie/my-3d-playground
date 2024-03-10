@@ -16,8 +16,10 @@ const gradientStyles = css`
     color: black;
     white-space: nowrap;
     text-shadow:
-      -1px -1px 3px ${(props) => props.theme.colors.red[350]},
-      -1px -1px 3px ${(props) => props.theme.colors.red[100]};
+      -1px -1px 3px ${({ theme }) => theme.colors.red[350]},
+      -1px -1px 3px
+        ${({ theme }) =>
+          theme.text.shadow ? theme.colors.red[100] : theme.colors.red[950]};
   }
 
   &::after {
@@ -29,9 +31,9 @@ const gradientStyles = css`
 
     background: linear-gradient(
       120deg,
-      ${(props) => props.theme.colors.red[940]} 0%,
-      ${(props) => props.theme.colors.red[400]} 75%,
-      ${(props) => props.theme.colors.red[200]} 100%
+      ${({ theme }) => theme.colors.red[940]} 0%,
+      ${({ theme }) => theme.colors.red[400]} 75%,
+      ${({ theme }) => theme.colors.red[200]} 100%
     );
     background-clip: text;
 

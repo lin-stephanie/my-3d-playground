@@ -2,20 +2,24 @@ import { Vector3 } from 'three'
 import { useState, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { SpotLight, useDepthBuffer } from '@react-three/drei'
+import { useStore } from '@/stores'
+import type { GroupProps } from '@react-three/fiber'
 
 // fix: 'applyDepthBuffer' is missing in props validation.eslint(react/prop-types)
 type SpotLightProps = React.ComponentProps<typeof SpotLight>
 
-type MovingSpotProps = SpotLightProps & {
+type MovingSpotlightProps = Partial<SpotLightProps> & {
   applyDepthBuffer?: boolean
-  applyCastShadow?: boolean
 }
 
-const MovingSpot = ({
+type MovingSpotlightsProps = GroupProps & {
+  spotlights: MovingSpotlightProps[]
+}
+
+const MovingSpotlight = ({
   applyDepthBuffer = false,
-  applyCastShadow = false,
   ...props
-}: MovingSpotProps) => {
+}: MovingSpotlightProps) => {
   const [temp] = useState(() => new Vector3())
 
   // fix: property 'target' does not exist on type 'never'.ts(2339)
@@ -48,11 +52,30 @@ const MovingSpot = ({
       intensity={1}
       attenuation={7}
       anglePower={4}
-      castShadow={applyCastShadow}
       depthBuffer={applyDepthBuffer ? depthBuffer : undefined}
       {...props}
     />
   )
 }
 
-export default MovingSpot
+const MovingSpotlights = ({ spotlights, ...props }: MovingSpotlightsProps) => {
+  const {
+    threeD: { spotlight },
+  } = useStore.use.themeConfig()
+
+  // console.log('spotlight', spotlight)
+
+  if (!spotlight) {
+    return null
+  }
+
+  return (
+    <group {...props}>
+      {spotlights.map((spotlight, index) => (
+        <MovingSpotlight key={index} {...spotlight} />
+      ))}
+    </group>
+  )
+}
+
+export default MovingSpotlights

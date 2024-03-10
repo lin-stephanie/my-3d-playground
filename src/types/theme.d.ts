@@ -14,7 +14,8 @@ interface GeneralTheme {
 declare module 'styled-components' {
   export interface DefaultTheme extends GeneralTheme {
     text: {
-      shadowAnimation: boolean
+      neon: boolean
+      shadow: boolean
     }
     threeD: {
       spotlight: boolean

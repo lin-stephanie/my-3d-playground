@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useCursor, Image, useTexture } from '@react-three/drei'
 import { easing } from 'maath'
+import { useStore } from '@/stores'
 import type { MeshProps, GroupProps, Vector3 } from '@react-three/fiber'
 import type { ImageProps } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
@@ -76,7 +77,15 @@ const Frame = ({
 }
 
 const Photo = ({ hover, scale, ...props }: PhotoProp) => {
+  /* the exclamation mark is a non-null assertion that will let TS know that
+  ref.current is defined when we access it in effects (!not in a frame loop). */
   const photo = useRef<React.ElementRef<typeof Image>>(null!)
+
+  const {
+    threeD: { imageZoom },
+  } = useStore.use.themeConfig()
+
+  // console.log('imageZoom', imageZoom)
 
   const [zoom, setZoom] = useState(1)
   const [rnd] = useState(() => Math.random())
@@ -85,9 +94,11 @@ const Photo = ({ hover, scale, ...props }: PhotoProp) => {
 
   useFrame((state, delta) => {
     if (photo.current) {
-      const newZoom =
-        1.05 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 20
-      setZoom(newZoom)
+      if (imageZoom) {
+        const newZoom =
+          1.05 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 1.5) / 20
+        setZoom(newZoom)
+      }
 
       easing.damp3(
         photo.current.scale,

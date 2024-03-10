@@ -5,8 +5,7 @@ import { useThemeSystem } from '@/hooks'
 
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
-// import MovingSpot from '@/components/MovingSpot'
-// import Frame from '@/components/Frame'
+import MovingSpotlights from '@/components/MovingSpotlights'
 import PhotoFrame from '@/components/PhotoFrame'
 import Balloons from '@/components/Balloons'
 
@@ -78,11 +77,18 @@ export default function Scene() {
 
       <ambientLight intensity={2} />
 
-      <directionalLight castShadow position={[10, 7, 10]} intensity={0.8} />
+      {/* <directionalLight castShadow position={[4, 1, 6]} intensity={0.5} /> */}
+      {/* <directionalLight castShadow position={[1, 1, 1]} intensity={0.5} /> */}
+      <directionalLight castShadow position={[6, 4, 6]} intensity={0.8} />
 
-      {/* <MovingSpot color={colors.red[200]} position={[6, 3, 2]} /> */}
-      {/* <MovingSpot color={colors.red[200]} position={[-6, 3, 2]} /> */}
-      {/* <MovingSpot color={colors.red[200]} position={[0, 3, 2]} /> */}
+      <MovingSpotlights
+        spotlights={[
+          { color: colors.red[200], position: [7, 0, 0] },
+          { color: colors.red[200], position: [-7, 0, 0] },
+          { color: colors.red[200], position: [0, 0, 0] },
+        ]}
+        position={[0, 3.3, 2]}
+      />
 
       <BackgroundWall
         receiveShadow
@@ -149,9 +155,9 @@ export default function Scene() {
           floatIntensity: 3,
           floatingRange: [-0.1, 0.1],
         }}
-        position={[6.2, -2.4, 0]}
+        position={[6.2, -2.5, 0]}
         rotation={[0, 0, 0.1]}
-        scale={0.38}
+        scale={0.36}
       />
     </Canvas>
   )
