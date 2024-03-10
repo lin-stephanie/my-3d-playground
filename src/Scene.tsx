@@ -1,10 +1,11 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useStore } from '@/stores'
+import { useThemeSystem } from '@/hooks'
 
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
-import MovingSpot from '@/components/MovingSpot'
+// import MovingSpot from '@/components/MovingSpot'
 // import Frame from '@/components/Frame'
 import PhotoFrame from '@/components/PhotoFrame'
 import Balloons from '@/components/Balloons'
@@ -20,6 +21,9 @@ import balloonMatcapUrl from '@/assets/textures/B0A2A8_866A63_E8E9F2_614C4F-512p
 
 export default function Scene() {
   const { colors } = useStore.use.themeConfig()
+
+  /* listen for system theme changes via media queries (prefers-color-scheme: dark) */
+  useThemeSystem()
 
   return (
     <Canvas
@@ -74,7 +78,7 @@ export default function Scene() {
 
       <ambientLight intensity={2} />
 
-      <directionalLight castShadow position={[7, 7, 10]} intensity={0.8} />
+      <directionalLight castShadow position={[10, 7, 10]} intensity={0.8} />
 
       {/* <MovingSpot color={colors.red[200]} position={[6, 3, 2]} /> */}
       {/* <MovingSpot color={colors.red[200]} position={[-6, 3, 2]} /> */}
@@ -118,30 +122,36 @@ export default function Scene() {
         matcapUrl={balloonMatcapUrl}
         balloons={[
           {
-            position: [-13.5, 3, 2],
-            rotation: [0, 0, 0],
+            position: [-1.5, 0.1, 2],
+            rotation: [0, 0, 0.3],
             scale: 1,
-            color: colors.red[400],
-            theme: 'dark',
+            color: colors.red[800],
+            themeType: 'dark',
           },
           {
-            position: [-3.5, 6.5, 2],
+            position: [0, 0, 6],
             rotation: [0, 0, 0],
             scale: 1,
             color: colors.red[300],
-            theme: 'system',
+            themeType: 'system',
           },
           {
-            position: [13, 2, 2],
-            rotation: [0, -0.2, 0],
+            position: [1.5, 0.2, 4],
+            rotation: [0, 0, -0.3],
             scale: 1,
             color: colors.red[100],
-            theme: 'light',
+            themeType: 'light',
           },
         ]}
-        position={[0, 0, 0]}
-        rotation={[0, 0, 0]}
-        scale={0.26}
+        floatConfig={{
+          speed: 1,
+          rotationIntensity: 0.1,
+          floatIntensity: 3,
+          floatingRange: [-0.1, 0.1],
+        }}
+        position={[6.2, -2.4, 0]}
+        rotation={[0, 0, 0.1]}
+        scale={0.38}
       />
     </Canvas>
   )

@@ -1,24 +1,31 @@
+import { useState } from 'react'
 import {
   useGLTF,
   useTexture,
   Instances,
   Instance,
   Float,
+  useCursor,
 } from '@react-three/drei'
+import { useStore } from '@/stores'
 import type { GroupProps } from '@react-three/fiber'
-import type { InstanceProps } from '@react-three/drei'
+import type { InstanceProps, FloatProps } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ThemeSetting } from '@/stores/slices/theme'
 
-type FloatingBalloonProps = Partial<InstanceProps> & {
-  theme: ThemeSetting
+type BalloonProps = Partial<InstanceProps> & {
+  themeType: ThemeSetting
+}
+
+type FloatingBalloonProps = BalloonProps & {
+  floatConfig?: Partial<FloatProps>
 }
 
 type BalloonInstancesProps = GroupProps & {
   modelUrl: string
   matcapUrl: string
-  balloons: FloatingBalloonProps[]
-  // floatConfig?: Partial<FloatProps>
+  balloons: BalloonProps[]
+  floatConfig?: Partial<FloatProps>
 }
 
 type GLTFResult = GLTF & {
@@ -32,20 +39,32 @@ type GLTFResult = GLTF & {
   }
 }
 
-const FloatingBalloon = ({ theme, ...props }: FloatingBalloonProps) => {
-  const handleClick = (theme: ThemeSetting) => {
-    console.log('theme', theme)
+const Balloon = ({ themeType, ...props }: BalloonProps) => {
+  const setThemeConfig = useStore.use.setThemeConfig()
+
+  const handleClick = () => {
+    setThemeConfig(themeType)
+    // console.log('themeType', themeType)
   }
 
-  return (
+  return <Instance {...props} onClick={handleClick} />
+}
+
+const FloatingBalloon = ({ floatConfig, ...props }: FloatingBalloonProps) => {
+  const { threeD } = useStore.use.themeConfig()
+
+  return threeD.float ? (
     <Float
       speed={1}
-      rotationIntensity={0.5}
-      floatIntensity={6}
+      rotationIntensity={0.1}
+      floatIntensity={3}
       floatingRange={[-0.1, 0.1]}
+      {...floatConfig}
     >
-      <Instance {...props} onClick={() => handleClick(theme)} />
+      <Balloon {...props} />
     </Float>
+  ) : (
+    <Balloon {...props} />
   )
 }
 
@@ -53,15 +72,23 @@ const Balloons = ({
   modelUrl,
   matcapUrl,
   balloons,
+  floatConfig,
   ...props
 }: BalloonInstancesProps) => {
   const { nodes } = useGLTF(modelUrl) as GLTFResult
   const matcapTexture = useTexture(matcapUrl)
 
+  const [hover, setHover] = useState(false)
+  useCursor(hover)
+
   // console.log(nodes)
 
   return (
-    <group {...props}>
+    <group
+      {...props}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}
+    >
       <Instances
         castShadow
         range={balloons.length}
@@ -75,7 +102,7 @@ const Balloons = ({
       >
         <meshMatcapMaterial matcap={matcapTexture} />
         {balloons.map((balloon, index) => (
-          <FloatingBalloon key={index} {...balloon} />
+          <FloatingBalloon key={index} floatConfig={floatConfig} {...balloon} />
         ))}
       </Instances>
     </group>

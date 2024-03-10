@@ -19,6 +19,7 @@ declare module 'styled-components' {
     threeD: {
       spotlight: boolean
       imageZoom: boolean
+      float: boolean
     }
   }
 }

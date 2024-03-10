@@ -68,6 +68,7 @@ export const darkThemeConfig: DefaultTheme = {
   threeD: {
     spotlight: false,
     imageZoom: false,
+    float: false,
   },
 }
 
@@ -79,5 +80,6 @@ export const lightThemeConfig: DefaultTheme = {
   threeD: {
     spotlight: true,
     imageZoom: true,
+    float: true,
   },
 }
