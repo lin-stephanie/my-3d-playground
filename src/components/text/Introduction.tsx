@@ -10,7 +10,7 @@ const StyledHtml = styled(Html)`
   pointer-events: none;
 `
 
-const StyledDiv = styled.div`
+const IntroContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,11 @@ const StyledDiv = styled.div`
 
   margin-top: 6%;
 
-  font-family: 'Rubik Wet Paint', system-ui, sans-serif;
+  font-family:
+    Rubik Wet Paint,
+    Tahoma,
+    system-ui,
+    sans-serif;
 `
 
 const Introduction = () => {
@@ -29,10 +33,10 @@ const Introduction = () => {
   return (
     <StyledHtml center>
       <ThemeProvider theme={themeConfig}>
-        <StyledDiv>
+        <IntroContainer>
           <Greeting />
           <Profile />
-        </StyledDiv>
+        </IntroContainer>
       </ThemeProvider>
     </StyledHtml>
   )

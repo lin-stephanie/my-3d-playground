@@ -18,33 +18,12 @@ const createNeonAnimation = (theme: DefaultTheme) => keyframes`
 const StyledP = styled.p`
   color: ${({ theme }) =>
     theme.text.neon ? theme.colors.yellow[200] : theme.colors.yellow[50]};
-  font-family: 'neon';
+  font-family: Neon, Tahoma, system-ui, sans-serif;
   font-size: 1.1rem;
   line-height: 90px;
   letter-spacing: 1px;
-  /* text-shadow: -0.2vw 0.2vw 0.2vw ${(props) =>
-    props.theme.colors.yellow[700]}; */
   text-shadow: -0.2vw 0.2vw 0.2vw
     ${({ theme }) => (theme.text.neon ? theme.colors.yellow[700] : 'none')};
-
-  /* corr */
-  /* animation: 6s ${(props) => createNeonAnimation(props.theme)} ease-in-out */
-
-  /* err: styled-components.js?v=9d6b6166:843 Uncaught Error: It seems you are interpolating a keyframe declaration
-  (hufiPi) into an untagged string. This was supported in styled-components v3, but is not longer supported in v4 as
-  keyframes are now injected on-demand. Please wrap your string in the css\`\` helper which ensures the styles are
-  injected correctly.  */
-  /* https://styled-components.com/docs/api#css */
-  /* animation: ${({ theme }) =>
-    theme.text.neon
-      ? `6s ${createNeonAnimation(theme)} ease-in-out infinite`
-      : 'none'}; */
-
-  /* corr */
-  /* animation: ${({ theme }) =>
-    theme.text.neon
-      ? css`6s ${createNeonAnimation(theme)} ease-in-out infinite`
-      : 'none'}; */
   ${({ theme }) =>
     theme.text.neon &&
     css`
