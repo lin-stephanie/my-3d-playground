@@ -1,10 +1,11 @@
 import { create } from 'zustand'
-import { createThemeSlice } from './slices/theme'
-import type { ThemeSlice } from './slices/theme'
 import { createSelectors } from './createSelectors'
+import { createThemeSlice, type ThemeSlice } from './slices/theme'
+import { createDebugSlice, type DebugSlice } from './slices/debug'
 
-const useStoreBase = create<ThemeSlice>()((...a) => ({
+const useStoreBase = create<ThemeSlice & DebugSlice>()((...a) => ({
   ...createThemeSlice(...a),
+  ...createDebugSlice(...a),
 }))
 
 export const useStore = createSelectors(useStoreBase)

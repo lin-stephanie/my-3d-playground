@@ -8,7 +8,8 @@ import {
   useCursor,
 } from '@react-three/drei'
 import { useStore } from '@/stores'
-import type { GroupProps } from '@react-three/fiber'
+import { consoleLog } from '@/utils'
+import type { GroupProps, ThreeEvent } from '@react-three/fiber'
 import type { InstanceProps, FloatProps } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { ThemeSetting } from '@/stores/slices/theme'
@@ -41,10 +42,14 @@ type GLTFResult = GLTF & {
 
 const Balloon = ({ themeType, ...props }: BalloonProps) => {
   const setThemeConfig = useStore.use.setThemeConfig()
+  const debug = useStore.use.debug()
 
-  const handleClick = () => {
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
+    /* avoid events being handled incorrectly by later objects */
+    e.stopPropagation()
+
     setThemeConfig(themeType)
-    // console.log('themeType', themeType)
+    consoleLog(debug, 'themeType', themeType)
   }
 
   return <Instance {...props} onClick={handleClick} />

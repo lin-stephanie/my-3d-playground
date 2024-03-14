@@ -1,7 +1,9 @@
 import { Suspense } from 'react'
-import { OrbitControls } from '@react-three/drei'
+import { DirectionalLightHelper } from 'three'
+import { OrbitControls, Helper } from '@react-three/drei'
 import { useStore } from '@/stores'
-import { useThemeSystem } from '@/hooks'
+import { useThemeSystem, useDebugListener } from '@/hooks'
+import { consoleLog } from '@/utils'
 
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
@@ -19,13 +21,18 @@ import frameMatcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.
 import balloonModel from '@/assets/models/balloon2.glb?url'
 import balloonMatcapUrl from '@/assets/textures/B0A2A8_866A63_E8E9F2_614C4F-512px.png'
 
-import loadingUrl from '@/assets/images/circle2.gif'
+import loadingUrl from '@/assets/images/circle1.gif'
 
 export default function Scene() {
   const { colors } = useStore.use.themeConfig()
+  const debug = useStore.use.debug()
 
-  /* listen for system theme changes via media queries (prefers-color-scheme: dark) */
+  /* effect: listen for system theme changes via media queries (prefers-color-scheme: dark) */
   useThemeSystem()
+
+  /* effect: listen for path changes to debug to enable debug mode */
+  useDebugListener()
+  consoleLog(debug, 'debug', debug)
 
   return (
     <Suspense fallback={<Loader loadingUrl={loadingUrl} />}>
@@ -37,9 +44,9 @@ export default function Scene() {
 
       <ambientLight intensity={2} />
 
-      {/* <directionalLight castShadow position={[4, 1, 6]} intensity={0.5} /> */}
-      {/* <directionalLight castShadow position={[1, 1, 1]} intensity={0.5} /> */}
-      <directionalLight castShadow position={[6, 4, 6]} intensity={0.8} />
+      <directionalLight castShadow position={[6, 4, 6]} intensity={0.8}>
+        {debug && <Helper type={DirectionalLightHelper} args={[1, 'cyan']} />}
+      </directionalLight>
 
       <MovingSpotlights
         spotlights={[
