@@ -113,8 +113,9 @@ const Photo = ({ hover, scale, ...props }: PhotoProp) => {
     <Image
       ref={photo}
       zoom={zoom}
-      raycast={() => null}
       scale={scale}
+      /* disable ray detection for some components that don't require user interaction */
+      raycast={() => null}
       {...props}
     />
   )

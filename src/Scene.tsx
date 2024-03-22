@@ -1,9 +1,12 @@
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { DirectionalLightHelper } from 'three'
 import { OrbitControls, Helper } from '@react-three/drei'
+
 import { useStore } from '@/stores'
 import { useThemeSystem, useDebugListener } from '@/hooks'
 import { consoleLog } from '@/utils'
+import { compConfigs } from '@/configs/components'
+import { assets } from '@/configs/assets'
 
 import BackgroundWall from '@/components/BackgroundWall'
 import Introduction from '@/components/text/Introduction'
@@ -11,20 +14,9 @@ import MovingSpotlights from '@/components/MovingSpotlights'
 import PhotoFrame from '@/components/PhotoFrame'
 import Balloons from '@/components/Balloons'
 import Loader from '@/components/Loader'
-
-import wallUrl from '@/assets/images/wall1.jpg'
-
-import photoUrl from '@/assets/images/photo-stone-700.png'
-import frameModel from '@/assets/models/photo-frame1.glb?url'
-import frameMatcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
-
-import balloonModel from '@/assets/models/balloon2.glb?url'
-import balloonMatcapUrl from '@/assets/textures/B0A2A8_866A63_E8E9F2_614C4F-512px.png'
-
-import loadingUrl from '@/assets/images/circle1.gif'
+import ControlsPanel from '@/components/ControlsPanel'
 
 export default function Scene() {
-  const { colors } = useStore.use.themeConfig()
   const debug = useStore.use.debug()
 
   /* effect: listen for system theme changes via media queries (prefers-color-scheme: dark) */
@@ -34,97 +26,104 @@ export default function Scene() {
   useDebugListener()
   consoleLog(debug, 'debug', debug)
 
+  /* components controls gui */
+  const [configs, setConfigs] = useState(compConfigs)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleControlsChange = (controls: any) => {
+    setConfigs(controls)
+  }
+
   return (
-    <Suspense fallback={<Loader loadingUrl={loadingUrl} />}>
+    <Suspense fallback={<Loader loadingUrl={assets.loadingUrl} />}>
+      {debug && <ControlsPanel onControlsChange={handleControlsChange} />}
+
       <OrbitControls
         makeDefault
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 1.75}
       />
 
-      <ambientLight intensity={2} />
+      <ambientLight intensity={configs.al_intensity} />
 
-      <directionalLight castShadow position={[6, 4, 6]} intensity={0.8}>
-        {debug && <Helper type={DirectionalLightHelper} args={[1, 'cyan']} />}
+      <directionalLight
+        castShadow
+        intensity={configs.dl_intensity}
+        position={configs.dl_position}
+      >
+        {debug && (
+          <Helper
+            type={DirectionalLightHelper}
+            args={[configs.dlh_size, configs.dlh_color]}
+          />
+        )}
       </directionalLight>
 
       <MovingSpotlights
         spotlights={[
-          { color: colors.red[200], position: [7, 0, 0] },
-          { color: colors.red[200], position: [-7, 0, 0] },
-          { color: colors.red[200], position: [0, 0, 0] },
+          { color: configs.sl_color, position: configs.sl_position1 },
+          { color: configs.sl_color, position: configs.sl_position2 },
+          { color: configs.sl_color, position: configs.sl_position3 },
         ]}
-        position={[0, 3.3, 2]}
+        position={configs.sl_position}
       />
 
       <BackgroundWall
         receiveShadow
-        wallUrl={wallUrl}
-        color={colors.stone[700]}
-        position={[0, 0, 0]}
+        wallUrl={assets[configs.bw_wall]}
+        color={configs.bw_color}
+        position={configs.bw_position}
       >
         <Introduction />
       </BackgroundWall>
 
-      {/* <Frame
-        castShadow
-        imageUrl={cartoonPortraitUrl}
-        position={[3, -1, 0.2]}
-      /> */}
-      {/* <Frame
-        modelUrl={frameModel}
-        matcapUrl={matcapUrl}
-        imageUrl={cartoonPortraitUrl}
-        position={[1, 0, 0]}
-      /> */}
       <PhotoFrame
-        modelUrl={frameModel}
-        matcapUrl={frameMatcapUrl}
-        photoUrl={photoUrl}
-        framePos={[0, 0, 0.18]}
-        frameScale={[0.25, 0.19, 0.25]}
-        photoPos={[-0.01, 0, 0.18]}
-        photoScale={[2, 2.6]}
-        position={[-2.8, 1.6, 0]}
-        rotation={[0, 0, 0.05]}
-        scale={0.56}
+        modelUrl={assets.frameModel}
+        matcapUrl={assets.frameMatcapUrl}
+        photoUrl={assets.photoUrl}
+        framePos={configs.f_position}
+        frameScale={configs.f_scale}
+        photoPos={configs.p_position}
+        photoScale={configs.p_scale}
+        position={configs.pf_position}
+        rotation={configs.pf_rotation}
+        scale={configs.pf_scale}
       />
 
       <Balloons
-        modelUrl={balloonModel}
-        matcapUrl={balloonMatcapUrl}
+        modelUrl={assets.balloonModel}
+        matcapUrl={assets.balloonMatcapUrl}
         balloons={[
           {
-            position: [-1.5, 0.1, 2],
-            rotation: [0, 0, 0.3],
-            scale: 1,
-            color: colors.red[800],
             themeType: 'dark',
+            position: configs.b_position1,
+            rotation: configs.b_rotation1,
+            scale: configs.b_scale1,
+            color: configs.b_color1,
           },
           {
-            position: [0, 0, 6],
-            rotation: [0, 0, 0],
-            scale: 1,
-            color: colors.red[300],
             themeType: 'system',
+            position: configs.b_position2,
+            rotation: configs.b_rotation2,
+            scale: configs.b_scale2,
+            color: configs.b_color2,
           },
           {
-            position: [1.5, 0.2, 4],
-            rotation: [0, 0, -0.3],
-            scale: 1,
-            color: colors.red[100],
             themeType: 'light',
+            position: configs.b_position3,
+            rotation: configs.b_rotation3,
+            scale: configs.b_scale3,
+            color: configs.b_color3,
           },
         ]}
         floatConfig={{
-          speed: 1,
-          rotationIntensity: 0.1,
-          floatIntensity: 3,
-          floatingRange: [-0.1, 0.1],
+          speed: configs.bf_speed,
+          rotationIntensity: configs.bf_rotationIntensity,
+          floatIntensity: configs.bf_floatIntensity,
+          floatingRange: configs.bf_floatingRange,
         }}
-        position={[6.2, -2.5, 0]}
-        rotation={[0, 0, 0.1]}
-        scale={0.36}
+        position={configs.b_position}
+        rotation={configs.b_rotation}
+        scale={configs.b_scale}
       />
     </Suspense>
   )
