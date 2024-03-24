@@ -29,6 +29,29 @@ const StyledP = styled.p`
     css`
       animation: 6s ${createNeonAnimation} ease-in-out infinite;
     `}
+
+  @media (max-width: 1280px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    line-height: 80px;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 576px) {
+    line-height: 70px;
+    font-size: 0.6rem;
+  }
+
+  @media (max-width: 460px) {
+    line-height: 60px;
+    font-size: 0.5rem;
+  }
 `
 
 const Profile = () => {

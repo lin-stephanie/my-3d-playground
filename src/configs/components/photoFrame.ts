@@ -7,7 +7,7 @@ export const pfConfigs = {
   p_scale: [2, 2.6] as Tuple2,
   pf_position: [-2.8, 1.6, 0] as Tuple3,
   pf_rotation: [0, 0, 0.05] as Tuple3,
-  pf_scale: 0.56,
+  pf_scale: 0.58,
 }
 
 export const pfControls: FolderParams[0] = {

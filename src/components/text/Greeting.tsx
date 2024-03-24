@@ -42,6 +42,37 @@ const gradientStyles = css`
   }
 `
 
+const StyledP = styled.p`
+  ${gradientStyles}
+
+  margin-left: 32%;
+
+  font-size: 4rem;
+  letter-spacing: 1px;
+
+  @media (max-width: 1280px) {
+    font-size: 3.2rem;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 2.7rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 460px) {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+`
+
 const StyledH1 = styled.h1`
   ${gradientStyles}
 
@@ -49,20 +80,33 @@ const StyledH1 = styled.h1`
 
   font-size: 7rem;
   letter-spacing: 3px;
-`
 
-const StyledH2 = styled.h2`
-  ${gradientStyles}
+  @media (max-width: 1280px) {
+    font-size: 5.8rem;
+  }
 
-  margin-left: 248px;
+  @media (max-width: 1024px) {
+    font-size: 5rem;
+  }
 
-  font-size: 4rem;
-  letter-spacing: 1px;
+  @media (max-width: 768px) {
+    font-size: 4.2rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 4rem;
+    letter-spacing: 1.5px;
+  }
+
+  @media (max-width: 460px) {
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+  }
 `
 
 const Greeting = () => (
   <>
-    <StyledH2 data-text="Hey there, I am">Hey there, I am</StyledH2>
+    <StyledP data-text="Hey there, I am">Hey there, I am</StyledP>
     <StyledH1 data-text="Stephanie Lin">Stephanie Lin</StyledH1>
   </>
 )

@@ -43,11 +43,11 @@ export default function App() {
         }}
         // 透视相机配置
         /* camera={{
-      fov: 45,
-      near: 0.1,
-      far: 200,
-      position: [0, 0, 10],
-    }} */
+            fov: 45,
+            near: 0.1,
+            far: 200,
+            position: [0, 0, 10],
+          }} */
 
         // 使用正交相机
         orthographic={true}

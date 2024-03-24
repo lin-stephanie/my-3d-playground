@@ -18,13 +18,25 @@ const IntroContainer = styled.div`
   align-items: center;
   gap: 6px;
 
-  margin-top: 6%;
+  margin-top: 10%;
 
   font-family:
     Rubik Wet Paint,
     Tahoma,
     system-ui,
     sans-serif;
+
+  @media (max-width: 1280px) {
+    margin-top: 12%;
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 14%;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 16%;
+  }
 `
 
 const Introduction = () => {
