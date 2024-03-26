@@ -1,10 +1,19 @@
 import { Html } from '@react-three/drei'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, keyframes } from 'styled-components'
 import { useStore } from '@/stores'
 import Greeting from './Greeting'
 import Profile from './Profile'
 
 // type HtmlProps = React.ComponentProps<typeof Html>
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
 const StyledHtml = styled(Html)`
   pointer-events: none;
@@ -20,11 +29,15 @@ const IntroContainer = styled.div`
 
   margin-top: 10%;
 
+  opacity: 0;
+
   font-family:
     Rubik Wet Paint,
     Tahoma,
     system-ui,
     sans-serif;
+
+  animation: 1s ${fadeIn} linear forwards;
 
   @media (max-width: 1280px) {
     margin-top: 12%;

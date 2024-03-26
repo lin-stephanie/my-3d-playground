@@ -7,6 +7,7 @@ import {
   Float,
   useCursor,
 } from '@react-three/drei'
+import { a, useSpring } from '@react-spring/three'
 import { useStore } from '@/stores'
 import { consoleLog } from '@/utils'
 import type { GroupProps, ThreeEvent } from '@react-three/fiber'
@@ -22,11 +23,12 @@ type FloatingBalloonProps = BalloonProps & {
   floatConfig?: Partial<FloatProps>
 }
 
-type BalloonInstancesProps = GroupProps & {
+type BalloonsProps = GroupProps & {
   modelUrl: string
   matcapUrl: string
   balloons: BalloonProps[]
   floatConfig?: Partial<FloatProps>
+  position: [number, number, number]
 }
 
 type GLTFResult = GLTF & {
@@ -78,21 +80,28 @@ const Balloons = ({
   matcapUrl,
   balloons,
   floatConfig,
+  position,
   ...props
-}: BalloonInstancesProps) => {
+}: BalloonsProps) => {
   const { nodes } = useGLTF(modelUrl) as GLTFResult
+
   const matcapTexture = useTexture(matcapUrl)
 
   const [hover, setHover] = useState(false)
   useCursor(hover)
 
-  // console.log(nodes)
+  const spring = useSpring({
+    to: { position: position },
+    from: { position: [position[0] + 3, position[1], position[2]] },
+    config: { duration: 1000 },
+  })
 
   return (
-    <group
-      {...props}
+    <a.group
+      position={spring.position.to((x, y, z) => [x, y, z])}
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
+      {...props}
     >
       <Instances
         castShadow
@@ -110,7 +119,7 @@ const Balloons = ({
           <FloatingBalloon key={index} floatConfig={floatConfig} {...balloon} />
         ))}
       </Instances>
-    </group>
+    </a.group>
   )
 }
 

@@ -20,6 +20,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.102.3",
     "@react-three/fiber": "^8.15.19",
     "leva": "^0.9.35",

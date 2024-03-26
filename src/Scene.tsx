@@ -34,19 +34,6 @@ export default function Scene() {
   }
 
   /* responsive */
-  /* const viewport = useThree((state) => state.viewport)
-  const sceneWidthFactor = Math.min(Math.max(window.innerWidth / 1536, 0.5), 2)
-  // const sceneHeightFactor = Math.min(Math.max(window.innerHeight / 738, 0.5), 2)
-  const ballonsScaleFactor = Math.min(
-    Math.max(window.innerHeight / 750, 0.8),
-    1.5
-  )
-  console.log(window.innerWidth, viewport.width)
-  const isXl = window.innerWidth < 1280 // 1280 is the breakpoint for mobile devices (xl tailwind)
-  const isLg = window.innerWidth < 1024 // 1024 is the breakpoint for mobile devices (lg tailwind)
-  const isMd = window.innerWidth < 768 // 768 is the breakpoint for mobile devices (md tailwind)
-  const isSm = window.innerWidth < 576 */
-
   const {
     viewportWidth,
     viewportHeight,
@@ -148,35 +135,11 @@ export default function Scene() {
           floatIntensity: configs.bf_floatIntensity,
           floatingRange: configs.bf_floatingRange,
         }}
-        position={
-          [
-            /* isXs
-              ? configs.b_position[0] * sceneWidthFactor * 0.35
-              : isSm
-                ? configs.b_position[0] * sceneWidthFactor * 0.6
-                : isMd
-                  ? configs.b_position[0] * sceneWidthFactor * 0.65
-                  : isLg
-                    ? configs.b_position[0] * sceneWidthFactor * 0.8
-                    : isXl
-                      ? configs.b_position[0] * sceneWidthFactor * 0.9
-                      : configs.b_position[0] * sceneWidthFactor, */
-            isMd ? viewportWidth * 0.28 : viewportWidth * 0.4,
-            /* isSm
-              ? configs.b_position[1] * sceneHeightFactor * 1.15
-              : isMd
-                ? configs.b_position[1] * sceneHeightFactor * 1.1
-                : isLg
-                  ? configs.b_position[1] * sceneHeightFactor * 1.05
-                  : isXl
-                    ? configs.b_position[1] * sceneHeightFactor * 1.05
-                    : configs.b_position[1] * sceneHeightFactor, */
-            isMd ? -viewportHeight * 0.385 : -viewportHeight * 0.34,
-            configs.b_position[2],
-          ]
-          // [6.2, -2.5, 0]
-          // configs.b_position
-        }
+        position={[
+          isMd ? viewportWidth * 0.28 : viewportWidth * 0.4,
+          isMd ? -viewportHeight * 0.385 : -viewportHeight * 0.34,
+          configs.b_position[2],
+        ]}
         rotation={configs.b_rotation}
         scale={
           isSm

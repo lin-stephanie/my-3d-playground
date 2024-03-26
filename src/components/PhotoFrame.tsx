@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useCursor, Image, useTexture } from '@react-three/drei'
+import { a, useSpring } from '@react-spring/three'
 import { easing } from 'maath'
 import { useStore } from '@/stores'
 import type { MeshProps, GroupProps, Vector3 } from '@react-three/fiber'
@@ -26,6 +27,7 @@ type PhotoFrameProp = Omit<
   frameScale: Vector3
   photoPos: Vector3
   photoScale: [number, number]
+  position: [number, number, number]
 }
 
 type GLTFResult = GLTF & {
@@ -60,12 +62,7 @@ const Frame = ({
       onPointerLeave={() => setHover(false)}
       {...props}
     >
-      <meshMatcapMaterial
-        matcap={matcapTexture}
-        // color={'#78716c'}
-        color={'#9ca3af'}
-        // color={'#a8a29e'}
-      />
+      <meshMatcapMaterial matcap={matcapTexture} color={'#9ca3af'} />
       <mesh
         castShadow
         geometry={nodes.mesh.geometry}
@@ -129,14 +126,24 @@ const PhotoFrame = ({
   frameScale,
   photoPos,
   photoScale,
+  position,
   ...props
 }: PhotoFrameProp) => {
   const [hover, setHover] = useState(false)
-
   useCursor(hover)
 
+  const spring = useSpring({
+    to: { position: position },
+    from: { position: [position[0] - 5, position[1], position[2]] },
+    config: { duration: 1000 },
+  })
+
   return (
-    <group {...props}>
+    // <a.group {...props} position={spring.position.to((x, y, z) => [x, y, z])}>
+    // @ts-expect-error (for SpringValue<number[]> is not assignable to Vector3)
+    // Spring type is Vector3 Type (Typescript return error on position)
+    // https://github.com/pmndrs/react-spring/issues/1302
+    <a.group position={spring.position} {...props}>
       <Frame
         modelUrl={modelUrl}
         matcapUrl={matcapUrl}
@@ -150,7 +157,7 @@ const PhotoFrame = ({
         scale={photoScale}
         hover={hover}
       />
-    </group>
+    </a.group>
   )
 }
 

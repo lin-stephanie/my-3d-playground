@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components'
 import { colors } from '@/configs/colors'
 
-const createNeonAnimation = keyframes`
+const neon = keyframes`
   0%, 100% {
     color: ${colors.yellow[200]};
     text-shadow:
@@ -27,7 +27,7 @@ const StyledP = styled.p`
   ${({ theme }) =>
     theme.text.neon &&
     css`
-      animation: 6s ${createNeonAnimation} ease-in-out infinite;
+      animation: 6s ${neon} ease-in-out infinite;
     `}
 
   @media (max-width: 1280px) {
