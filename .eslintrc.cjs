@@ -14,7 +14,7 @@ module.exports = {
     'prettier',
   ],
 
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '_assets'],
 
   parser: '@typescript-eslint/parser',
 

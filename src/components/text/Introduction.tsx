@@ -16,7 +16,7 @@ const fadeIn = keyframes`
 `
 
 const StyledHtml = styled(Html)`
-  pointer-events: none;
+  pointer-events: auto;
 `
 
 const IntroContainer = styled.div`
@@ -27,7 +27,7 @@ const IntroContainer = styled.div`
   align-items: center;
   gap: 6px;
 
-  margin-top: 10%;
+  margin-top: 15%;
 
   opacity: 0;
 

@@ -1,13 +1,13 @@
 import type { FolderParams, Tuple2, Tuple3 } from '@/types/controls'
 
 export const pfConfigs = {
-  f_position: [0, 0, 0.18] as Tuple3,
-  f_scale: [0.25, 0.19, 0.25] as Tuple3,
-  p_position: [-0.01, 0, 0.18] as Tuple3,
+  f_position: [0, 0, 0] as Tuple3,
+  f_scale: [0.25, 0.19, 0.35] as Tuple3,
+  p_position: [-0.01, 0, 0] as Tuple3,
   p_scale: [2, 2.6] as Tuple2,
-  pf_position: [-2.8, 1.6, 0] as Tuple3,
+  pf_position: [-2.8, 1.55, 0.15] as Tuple3,
   pf_rotation: [0, 0, 0.05] as Tuple3,
-  pf_scale: 0.58,
+  pf_scale: 0.6,
 }
 
 export const pfControls: FolderParams[0] = {

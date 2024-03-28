@@ -93,7 +93,8 @@ const Balloons = ({
   const spring = useSpring({
     to: { position: position },
     from: { position: [position[0] + 3, position[1], position[2]] },
-    config: { duration: 1000 },
+    delay: 1600,
+    config: { duration: 600 },
   })
 
   return (

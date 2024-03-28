@@ -15,6 +15,7 @@ import PhotoFrame from '@/components/PhotoFrame'
 import Balloons from '@/components/Balloons'
 import Loader from '@/components/Loader'
 import ControlsPanel from '@/components/ControlsPanel'
+import Pegboard from '@/components/Pegboard'
 
 export default function Scene() {
   const debug = useStore.use.debug()
@@ -101,6 +102,21 @@ export default function Scene() {
           rotation={configs.pf_rotation}
           scale={configs.pf_scale}
         />
+        <Pegboard
+          modelUrl={assets.pegboardModel}
+          matcapUrl={assets.pegboardMatcapUrl}
+          position={[1.9, -0.5, 0.1]}
+          rotation={[0, 0, 0]}
+          scale={[6.6, 2.8, 1]}
+          hooksConfig={{
+            hook1: { position: [0.205, 0.99, 0.012] },
+            hook2: { position: [0.163, 0.99, 0.012] },
+          }}
+          holdersConfig={{
+            holder1: { position: [-0.28, 0.73, 0.012] },
+            holder2: { position: [-0.196, 0.73, 0.012] },
+          }}
+        ></Pegboard>
       </group>
 
       <Balloons

@@ -134,8 +134,8 @@ const PhotoFrame = ({
 
   const spring = useSpring({
     to: { position: position },
-    from: { position: [position[0] - 5, position[1], position[2]] },
-    config: { duration: 1000 },
+    from: { position: [position[0] - 6, position[1], position[2]] },
+    config: { duration: 800 },
   })
 
   return (

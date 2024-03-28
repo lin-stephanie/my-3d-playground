@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    line-height: 1.5;
+    line-height: 1.3;
     font-weight: 400;
     font-synthesis: none;
     text-rendering: optimizeLegibility;

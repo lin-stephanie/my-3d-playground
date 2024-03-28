@@ -4,13 +4,16 @@ import wallUrl3 from '@/assets/images/wall3.jpg'
 import wallUrl4 from '@/assets/images/wall4.jpg'
 
 import photoUrl from '@/assets/images/photo-stone-700.png'
-import frameModel from '@/assets/models/photo-frame1.glb?url'
+import frameModel from '@/assets/models/photo-frame.glb?url'
 import frameMatcapUrl from '@/assets/textures/C30C0C_9F0404_830404_5C0404-512px.png'
 
-import balloonModel from '@/assets/models/balloon2.glb?url'
+import balloonModel from '@/assets/models/balloon.glb?url'
 import balloonMatcapUrl from '@/assets/textures/B0A2A8_866A63_E8E9F2_614C4F-512px.png'
 
 import loadingUrl from '@/assets/images/circle1.gif'
+
+import pegboardModel from '@/assets/models/pegboard.glb?url'
+import pegboardMatcapUrl from '@/assets/textures/5F5F5F_BDBDBD_A4A4A4_9C9C9C-512px-dark-m.png'
 
 export const assets: Record<string, string> = {
   wallUrl1,
@@ -23,4 +26,6 @@ export const assets: Record<string, string> = {
   balloonModel,
   balloonMatcapUrl,
   loadingUrl,
+  pegboardModel,
+  pegboardMatcapUrl,
 }

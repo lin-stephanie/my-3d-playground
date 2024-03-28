@@ -12,7 +12,7 @@ const gradientStyles = css`
 
     position: absolute;
     top: 4%;
-    left: -0.5%;
+    left: -0.6%;
 
     color: black;
     white-space: nowrap;
@@ -41,11 +41,15 @@ const gradientStyles = css`
     white-space: nowrap;
   }
 `
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+`
 
 const StyledP = styled.p`
   ${gradientStyles}
-
-  margin-left: 32%;
 
   font-size: 4rem;
   letter-spacing: 1px;
@@ -105,10 +109,10 @@ const StyledH1 = styled.h1`
 `
 
 const Greeting = () => (
-  <>
+  <StyledDiv>
     <StyledP data-text="Hey there, I am">Hey there, I am</StyledP>
     <StyledH1 data-text="Stephanie Lin">Stephanie Lin</StyledH1>
-  </>
+  </StyledDiv>
 )
 
 export default Greeting
