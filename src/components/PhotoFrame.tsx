@@ -8,18 +8,18 @@ import type { MeshProps, GroupProps, Vector3 } from '@react-three/fiber'
 import type { ImageProps } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 
-type FrameProp = MeshProps & {
+type FrameProps = MeshProps & {
   modelUrl: string
   matcapUrl: string
   setHover: (value: boolean) => void
 }
 
-type PhotoProp = ImageProps & {
+type PhotoProps = ImageProps & {
   hover: boolean
 }
 
-type PhotoFrameProp = Omit<
-  FrameProp & PhotoProp & GroupProps,
+type PhotoFrameProps = Omit<
+  FrameProps & PhotoProps & GroupProps,
   'hover' | 'setHover'
 > & {
   photoUrl: string
@@ -47,7 +47,7 @@ const Frame = ({
   setHover,
   children,
   ...props
-}: FrameProp) => {
+}: FrameProps) => {
   const { nodes, materials } = useGLTF(modelUrl) as GLTFResult
   const matcapTexture = useTexture(matcapUrl)
 
@@ -73,7 +73,7 @@ const Frame = ({
   )
 }
 
-const Photo = ({ hover, scale, ...props }: PhotoProp) => {
+const Photo = ({ hover, scale, ...props }: PhotoProps) => {
   /* the exclamation mark is a non-null assertion that will let TS know that
   ref.current is defined when we access it in effects (!not in a frame loop). */
   const photo = useRef<React.ElementRef<typeof Image>>(null!)
@@ -128,7 +128,7 @@ const PhotoFrame = ({
   photoScale,
   position,
   ...props
-}: PhotoFrameProp) => {
+}: PhotoFrameProps) => {
   const [hover, setHover] = useState(false)
   useCursor(hover)
 

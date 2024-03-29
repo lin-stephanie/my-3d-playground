@@ -16,7 +16,10 @@ const fadeIn = keyframes`
 `
 
 const StyledHtml = styled(Html)`
-  pointer-events: auto;
+  /* info: make elements ignore mouse events, when the user interacts with
+  an element that has this attribute set, the mouse event penetrates the
+  element and triggers events on the following elements */
+  pointer-events: none;
 `
 
 const IntroContainer = styled.div`

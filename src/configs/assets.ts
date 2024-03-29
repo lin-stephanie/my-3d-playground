@@ -15,6 +15,9 @@ import loadingUrl from '@/assets/images/circle1.gif'
 import pegboardModel from '@/assets/models/pegboard.glb?url'
 import pegboardMatcapUrl from '@/assets/textures/5F5F5F_BDBDBD_A4A4A4_9C9C9C-512px-dark-m.png'
 
+import iPadModel from '@/assets/models/ipad.glb?url'
+import screensaverUrl from '@/assets/images/screensaver.jpg'
+
 export const assets: Record<string, string> = {
   wallUrl1,
   wallUrl2,
@@ -28,4 +31,6 @@ export const assets: Record<string, string> = {
   loadingUrl,
   pegboardModel,
   pegboardMatcapUrl,
+  iPadModel,
+  screensaverUrl,
 }
