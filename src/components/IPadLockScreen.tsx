@@ -73,7 +73,7 @@ const IPadLockScreen = ({ ...props }: IPadLockScreenProps) => {
   }, [])
 
   const formatDate = (time: Date) => {
-    return time.toLocaleDateString('en-US' /* undefined */, {
+    return time.toLocaleDateString(/* 'en-US'  */ undefined, {
       weekday: 'long',
       month: 'long',
       day: 'numeric',
@@ -81,7 +81,7 @@ const IPadLockScreen = ({ ...props }: IPadLockScreenProps) => {
   }
 
   const formatTime = (time: Date) => {
-    return time.toLocaleTimeString('en-US', {
+    return time.toLocaleTimeString(/* 'en-US'  */ undefined, {
       hour: '2-digit',
       minute: '2-digit',
       // second: '2-digit',

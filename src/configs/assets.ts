@@ -18,6 +18,9 @@ import pegboardMatcapUrl from '@/assets/textures/5F5F5F_BDBDBD_A4A4A4_9C9C9C-512
 import iPadModel from '@/assets/models/ipad.glb?url'
 import screensaverUrl from '@/assets/images/screensaver.jpg'
 
+import earphoneModel from '@/assets/models/earphone.glb?url'
+import earphoneMatcapUrl from '@/assets/textures/5F5F5F_BDBDBD_A4A4A4_9C9C9C-512px-dark-m1.png'
+
 export const assets: Record<string, string> = {
   wallUrl1,
   wallUrl2,
@@ -33,4 +36,6 @@ export const assets: Record<string, string> = {
   pegboardMatcapUrl,
   iPadModel,
   screensaverUrl,
+  earphoneModel,
+  earphoneMatcapUrl,
 }

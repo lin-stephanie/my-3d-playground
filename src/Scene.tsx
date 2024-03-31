@@ -17,6 +17,7 @@ import Loader from '@/components/Loader'
 import ControlsPanel from '@/components/ControlsPanel'
 import Pegboard from '@/components/Pegboard'
 import IPad from '@/components/IPad'
+import Earphone from '@/components/Earphone'
 
 export default function Scene() {
   const debug = useStore.use.debug()
@@ -106,16 +107,16 @@ export default function Scene() {
         <Pegboard
           modelUrl={assets.pegboardModel}
           matcapUrl={assets.pegboardMatcapUrl}
-          position={[1.9, -0.6, 0.1]}
+          position={[1.9, -0.7, 0.1]}
           rotation={[0, 0, 0]}
-          scale={[6.2, 3, 1]}
+          scale={[6.1, 3, 1]}
           hooksConfig={{
-            hook1: { position: [-0.105, 0.99, 0.014] },
-            hook2: { position: [-0.163, 0.99, 0.014] },
+            hook1: { position: [0.121, 1.07, 0.014] },
+            hook2: { position: [0.184, 1.088, 0.014] },
           }}
           holdersConfig={{
-            holder1: { position: [0.268, 0.772, 0.014] },
-            holder2: { position: [0.163, 0.79, 0.014] },
+            holder1: { position: [-0.196, 0.752, 0.014] },
+            holder2: { position: [-0.154, 0.752, 0.014] },
           }}
         >
           <IPad
@@ -126,9 +127,16 @@ export default function Scene() {
               distanceFactor: 10,
               $screensaverUrl: assets.screensaverUrl,
             }}
-            position={[-0.2, 3.8, 0.05]}
-            rotation={[0, 0, -1.66]}
-            scale={[0.54, 0.565, 0.55]}
+            position={[-2.87, 3.7, 0.05]}
+            rotation={[0, 0, -Math.PI / 2]}
+            scale={[0.585, 0.625, 0.55]}
+          />
+          <Earphone
+            modelUrl={assets.earphoneModel}
+            matcapUrl={assets.earphoneMatcapUrl}
+            position={[0.62, 2.45, 0.22]}
+            rotation={[-1.7, -2.12, 1.55]}
+            scale={0.146}
           />
         </Pegboard>
       </group>

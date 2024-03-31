@@ -34,7 +34,7 @@ const Pegboard = ({
   children,
   ...props
 }: PegboardProps) => {
-  const { nodes } = useGLTF(modelUrl) as GLTFResult
+  const { nodes /* materials */ } = useGLTF(modelUrl) as GLTFResult
   const matcapTexture = useTexture(matcapUrl)
 
   const spring = useSpring({
