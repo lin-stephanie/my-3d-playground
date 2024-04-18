@@ -90,7 +90,7 @@ const IPadLockScreen = ({ ...props }: IPadLockScreenProps) => {
   }
 
   return (
-    <StyledHtml center transform occlude {...props}>
+    <StyledHtml transform {...props}>
       <ScreenContainer>
         <DateDisplay>{formatDate(currentTime)}</DateDisplay>
         <TimeDisplay>{formatTime(currentTime)}</TimeDisplay>

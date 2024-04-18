@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react'
 import { DirectionalLightHelper } from 'three'
-import { OrbitControls, Helper } from '@react-three/drei'
+import { OrbitControls, Helper /* Bounds */ } from '@react-three/drei'
 
 import { useStore } from '@/stores'
 import { useThemeSystem, useDebugListener, useResponsive } from '@/hooks'
@@ -18,6 +18,7 @@ import ControlsPanel from '@/components/ControlsPanel'
 import Pegboard from '@/components/Pegboard'
 import IPad from '@/components/IPad'
 import Earphone from '@/components/Earphone'
+import SelectToZoom from '@/components/SelectToZoom'
 
 export default function Scene() {
   const debug = useStore.use.debug()
@@ -91,6 +92,17 @@ export default function Scene() {
         <Introduction />
       </BackgroundWall>
 
+      {/* <Bounds
+        // info: automatically adjusts the view angle to fit the current view when first rendered
+        // (may affect the initial view angle of the set scene)
+        // fit
+        clip
+        observe
+        margin={1.1}
+        maxDuration={1}
+        interpolateFunc={(t: number) => -t * t * t + t * t + t}
+      > */}
+
       <group scale={sceneWidthFactor}>
         <PhotoFrame
           modelUrl={assets.frameModel}
@@ -104,21 +116,22 @@ export default function Scene() {
           rotation={configs.pf_rotation}
           scale={configs.pf_scale}
         />
-        <Pegboard
-          modelUrl={assets.pegboardModel}
-          matcapUrl={assets.pegboardMatcapUrl}
-          position={[1.9, -0.7, 0.1]}
-          rotation={[0, 0, 0]}
-          scale={[6.1, 3, 1]}
-          hooksConfig={{
-            hook1: { position: [0.121, 1.07, 0.014] },
-            hook2: { position: [0.184, 1.088, 0.014] },
-          }}
-          holdersConfig={{
-            holder1: { position: [-0.196, 0.752, 0.014] },
-            holder2: { position: [-0.154, 0.752, 0.014] },
-          }}
-        >
+        <SelectToZoom>
+          <Pegboard
+            modelUrl={assets.pegboardModel}
+            matcapUrl={assets.pegboardMatcapUrl}
+            position={[1.9, -0.7, 0.1]}
+            rotation={[0, 0, 0]}
+            scale={[6.1, 3, 1]}
+            hooksConfig={{
+              hook1: { position: [0.121, 1.07, 0.014] },
+              hook2: { position: [0.184, 1.088, 0.014] },
+            }}
+            holdersConfig={{
+              holder1: { position: [-0.196, 0.752, 0.014] },
+              holder2: { position: [-0.154, 0.752, 0.014] },
+            }}
+          />
           <IPad
             modelUrl={assets.iPadModel}
             lockScreenConfig={{
@@ -127,19 +140,21 @@ export default function Scene() {
               distanceFactor: 10,
               $screensaverUrl: assets.screensaverUrl,
             }}
-            position={[-2.87, 3.7, 0.05]}
+            position={[-0.97, 3, 0.15]}
             rotation={[0, 0, -Math.PI / 2]}
             scale={[0.585, 0.625, 0.55]}
           />
           <Earphone
             modelUrl={assets.earphoneModel}
             matcapUrl={assets.earphoneMatcapUrl}
-            position={[0.62, 2.45, 0.22]}
+            position={[2.52, 1.75, 0.32]}
             rotation={[-1.7, -2.12, 1.55]}
             scale={0.146}
           />
-        </Pegboard>
+        </SelectToZoom>
       </group>
+
+      {/* </Bounds> */}
 
       <Balloons
         modelUrl={assets.balloonModel}

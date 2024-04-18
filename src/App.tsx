@@ -15,7 +15,7 @@ export default function App() {
           collapsed={true}
           flat={false}
           theme={{
-            fonts: { mono: 'Brush Script MT ' },
+            fonts: { mono: 'Brush Script MT' },
           }}
         />
       )}
